@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // ✅ Correct import
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,8 +20,12 @@ const Navbar = () => {
               placeholder="Search products..."
               className="w-full max-w-md px-4 py-1 border border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="ml-2 px-4 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">Search</button>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">Cart</button>
+            <button className="ml-2 px-4 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
+              Search
+            </button>
+            <button className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
+              Cart
+            </button>
           </div>
 
           {/* Desktop Nav */}
@@ -32,39 +36,8 @@ const Navbar = () => {
             <Link to="/contact" className="text-blue-600 hover:bg-yellow-400 hover:rounded-2xl p-2">Contact</Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
-              <div className="space-y-1">
-                <div className="w-6 h-0.5 bg-gray-700" />
-                <div className="w-6 h-0.5 bg-gray-700" />
-                <div className="w-6 h-0.5 bg-gray-700" />
-              </div>
-            </button>
-          </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-white px-4 pb-4 pt-2 space-y-2 shadow-md">
-          {/* Mobile Search Bar */}
-          <div className="flex items-center space-x-2">
-            <input
-              type="text"
-              placeholder="Search products..."
-              className="w-full px-4 py-2 border border-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">Search</button>
-          </div>
-
-          <Link to="/" className="block hover:bg-yellow-400 hover:rounded-2xl p-2 text-blue-600">Home</Link>
-          <Link to="/shop" className="block hover:bg-yellow-400 hover:rounded-2xl p-2 text-blue-600">Shop</Link>
-          <Link to="/about" className="block hover:bg-yellow-400 hover:rounded-2xl p-2 text-blue-600">About</Link>
-          <Link to="/contact" className="block hover:bg-yellow-400 hover:rounded-2xl p-2 text-blue-600">Contact</Link>
-
-        </div>
-      )}
     </nav>
   );
 };
