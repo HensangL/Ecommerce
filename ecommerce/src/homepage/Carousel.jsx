@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
+import banner1 from '../assets/images/banner1.jpg';
+import banner2 from '../assets/images/banner2.jpg';
+
+import banner3 from '../assets/images/banner3.jpg';
+
+
 
 const images = [
-  'https://source.unsplash.com/1600x600/?fashion',
-  'https://source.unsplash.com/1600x600/?shoes',
-  'https://source.unsplash.com/1600x600/?gadgets'
+  banner1,
+  banner2,
+  banner3,
 ];
 
 const Carousel = () => {
@@ -23,7 +29,7 @@ const Carousel = () => {
       <img
         src={images[currentIndex]}
         alt="carousel"
-        className="w-full h-64 md:h-96 object-cover transition duration-500"
+        className="w-full h-64 md:h-96 object-fill transition duration-500"
       />
 
       {/* Prev Button */}

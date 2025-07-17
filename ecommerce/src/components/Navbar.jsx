@@ -14,13 +14,14 @@ const Navbar = () => {
           <div className="text-xl font-bold text-blue-600">MyStore</div>
 
           {/* Search Bar - Desktop */}
-          <div className="hidden md:flex flex-grow justify-center px-4">
+          <div className="hidden md:flex flex-grow justify-center gap-1 px-4">
             <input
               type="text"
               placeholder="Search products..."
               className="w-full max-w-md px-4 py-1 border border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button className="ml-2 px-4 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">Search</button>
+            <button className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">Cart</button>
           </div>
 
           {/* Desktop Nav */}
@@ -61,6 +62,7 @@ const Navbar = () => {
           <Link to="/shop" className="block hover:bg-yellow-400 hover:rounded-2xl p-2 text-blue-600">Shop</Link>
           <Link to="/about" className="block hover:bg-yellow-400 hover:rounded-2xl p-2 text-blue-600">About</Link>
           <Link to="/contact" className="block hover:bg-yellow-400 hover:rounded-2xl p-2 text-blue-600">Contact</Link>
+
         </div>
       )}
     </nav>
