@@ -6,7 +6,7 @@ import Routing from './routing/Routing';
 function App() {
   return (
     <>
-    <div className='bg-amber-200'>
+    <div >
       <Navbar />
       <Routing/>
     </div>

@@ -1,24 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ShoppingCart } from 'lucide-react'; // Cart icon
+import {useSelector} from 'react-redux'
+
 
 const Cart = (props) => {
+  const carts= useSelector((state)=> state.cart.items)
+  console.log(carts); 
   const { id, name, price, description, image, slug } = props.data;
 
   return (
-    <div className="border p-4 rounded shadow hover:shadow-lg transition duration-300">
+    <div className="bg-white p-5  rounded-xl shadow-sm mt-20">
       <Link to={slug}>
-        <img
-          src={image}
-          alt={name}
-          className="w-full h-80 object-cover object-top mb-3"
-        />
-      </Link>
-      <h2 className="text-lg font-semibold">{name}</h2>
-      <p className="text-gray-700">${price}</p>
-      <p className="text-sm text-gray-500">{description}</p>
-      <button className="mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-        Add to Cart
-      </button>
+  <div className="flex justify-center items-center w-full">
+    <img
+      src={image}
+      alt={name}
+      className="object-fill w-[80%] h-64 rounded-xl mb-4"
+    />
+  </div>
+</Link>
+
+      <h2 className="text-xl  text-center text-blue-800 mb-1">{name}</h2>
+      <p className="text-blue-600 text-lg font-medium mb-1">${price}</p>
+      <div className="flex items-center justify-between">
+        <p className="text-gray-500 text-sm">{description}</p>
+        <button className="ml-2 p-1.5 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition duration-200">
+          <ShoppingCart size={16} /> {/* Smaller icon */}
+        </button>
+      </div>
     </div>
   );
 };
