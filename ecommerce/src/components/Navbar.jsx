@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleCart = () => setCartOpen(!cartOpen);
+  const cartItems = useSelector(state => state.cart.items);
 
   return (
     <nav className="bg-white shadow-md fixed top-0 w-full z-50">
@@ -23,9 +27,33 @@ const Navbar = () => {
             <button className="ml-2 px-4 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
               Search
             </button>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
-              Cart
-            </button>
+            <div className="relative">
+              <button onClick={toggleCart} className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
+                Cart ({cartItems.length})
+              </button>
+              {cartOpen && (
+                <div className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg z-50 ring-1 ring-black ring-opacity-5">
+                  <div className="p-4">
+                    {cartItems.length === 0 ? (
+                      <p>Your cart is empty.</p>
+                    ) : (
+                      <ul>
+                        {cartItems.map(item => (
+                          <li key={item.productId} className="flex items-center mb-2">
+                            <img src={item.image} alt={item.name} className="w-10 h-10 object-cover rounded-md mr-4" />
+                            <div className="flex-grow">
+                              <p className="font-semibold">{item.name}</p>
+                              <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Desktop Nav */}
