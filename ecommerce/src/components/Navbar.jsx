@@ -4,7 +4,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Products } from './Products';
 import { clearCart, increaseQuantity, decreaseQuantity } from '../store/Cart';
 
+
 const Navbar = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearch = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+    if (term.trim() === "") {
+      setSearchResults([]);
+    } else {
+      const results = Products.filter(product =>
+        product.name.toLowerCase().includes(term.toLowerCase())
+      );
+      setSearchResults(results);
+    }
+  };
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -40,14 +56,31 @@ const Navbar = () => {
 
           {/* Search Bar - Desktop */}
           <div className="hidden md:flex flex-grow justify-center gap-1 px-4">
-            <input
-              type="text"
-              placeholder="Search products..."
-              className="w-full max-w-md px-4 py-1 border border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button className="ml-2 px-4 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
-              Search
-            </button>
+            <div className="relative flex-grow">
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchTerm}
+                onChange={handleSearch}
+                className="border p-2 rounded w-full"
+              />
+              {searchResults.length > 0 && (
+                <div className="absolute mt-1 w-full bg-white rounded-md shadow-lg z-50">
+                  <ul>
+                    {searchResults.map(product => (
+                      <li key={product.id} className="p-2 hover:bg-gray-100 cursor-pointer">
+                       <Link to={`/Detail/${product.slug}`} className="flex items-center">
+  <img src={product.image} alt={product.name} className="w-8 h-8 object-cover rounded-md mr-2" />
+  {product.name}
+</Link>
+
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
             <div className="relative">
               <button onClick={toggleCart} className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
                 Cart ({cartItems.reduce((total, item) => total + item.quantity, 0)})
