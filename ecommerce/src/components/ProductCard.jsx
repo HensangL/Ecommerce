@@ -1,40 +1,76 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart } from 'lucide-react'; // Cart icon
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/Cart';
 
-const ProductCard = (props) => {
-  const { id, name, price, description, image, slug } = props.data;
+const ProductCard = ({ data }) => {
+  const { id, name, price, image, slug } = data;
   const dispatch = useDispatch();
-  const handleAddtoCart = () => {
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
     dispatch(addToCart({
       productId: id,
       quantity: 1,
     }));
   };
 
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        // Full star
+        stars.push(
+          <svg key={i} className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+          </svg>
+        );
+      } else {
+        // Empty star
+        stars.push(
+          <svg key={i} className="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+          </svg>
+        );
+      }
+    }
+    return stars;
+  };
+
   return (
-    <Link to={`/${slug}`} className="bg-white p-5 rounded-xl shadow-sm mt-20 block">
-      <div className="flex justify-center items-center w-full">
+    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+      <Link to={`/${slug}`} className="block overflow-hidden h-64"> {/* Fixed height container for the image */}
         <img
+          className="p-8 rounded-t-lg object-contain w-full h-full transition-transform duration-300 hover:scale-110"
           src={image}
           alt={name}
-          className="object-fill w-[80%] h-64 rounded-xl mb-4"
         />
+      </Link>
+      <div className="px-5 pb-5">
+        <Link to={`/${slug}`}>
+          <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{name}</h5>
+        </Link>
+        <div className="flex items-center mt-2.5 mb-5">
+          <div className="flex items-center space-x-1 rtl:space-x-reverse">
+            {renderStars(data.rating)}
+          </div>
+          <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">
+            {data.rating}
+          </span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
+          <button
+            onClick={handleAddToCart}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Add to cart
+          </button>
+        </div>
       </div>
-      <h2 className="text-xl text-center text-blue-800 mb-1">{name}</h2>
-      <p className="text-blue-600 text-lg font-medium mb-1">${price}</p>
-      <div className="flex items-center justify-between">
-        <p className="text-gray-500 text-sm">{description}</p>
-        <button onClick={(e) => {
-          e.preventDefault();
-          handleAddtoCart();
-        }} className="ml-2 p-1.5 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition duration-200">
-          <ShoppingCart size={16} /> {/* Smaller icon */}
-        </button>
-      </div>
-    </Link>
+    </div>
   );
 };
 

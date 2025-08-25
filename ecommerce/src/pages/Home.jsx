@@ -6,9 +6,13 @@ import Shop from '../pages/Shop'
 function Home() {
   return (
     <>
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100'>
+    <div className=''>
         <Carousel/>
+         <p className='font-bold text-5xl ml-0'>
+          Available products.
+        </p>
         <Shop/>
+       
         
     </div>
     </>
