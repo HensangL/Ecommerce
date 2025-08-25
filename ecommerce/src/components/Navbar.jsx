@@ -21,6 +21,11 @@ const Navbar = () => {
       setSearchResults(results);
     }
   };
+
+  const handleResultClick = () => {
+    setSearchTerm("");
+    setSearchResults([]);
+  };
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -68,12 +73,11 @@ const Navbar = () => {
                 <div className="absolute mt-1 w-full bg-white rounded-md shadow-lg z-50">
                   <ul>
                     {searchResults.map(product => (
-                      <li key={product.id} className="p-2 hover:bg-gray-100 cursor-pointer">
-                       <Link to={`/Detail/${product.slug}`} className="flex items-center">
-  <img src={product.image} alt={product.name} className="w-8 h-8 object-cover rounded-md mr-2" />
-  {product.name}
-</Link>
-
+                      <li key={product.id} className="p-2 hover:bg-gray-100 cursor-pointer" onClick={handleResultClick}>
+                       <Link to={`/${product.slug}`} className="flex items-center">
+                          <img src={product.image} alt={product.name} className="w-8 h-8 object-cover rounded-md mr-2" />
+                          {product.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
