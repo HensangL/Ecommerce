@@ -86,9 +86,9 @@ const Navbar = () => {
               Cart ({cartItems.reduce((total, item) => total + item.quantity, 0)})
             </button>
 
-            {/* Cart Dropdown - Bigger */}
+            {/* Cart - Desktop Dropdown */}
             {cartOpen && (
-              <div className="absolute right-0 mt-2 w-96 bg-white rounded-md shadow-lg z-50 ring-1 ring-black ring-opacity-5">
+              <div className="hidden md:block absolute right-0 mt-2 w-96 bg-white rounded-md shadow-lg z-50 ring-1 ring-black ring-opacity-5">
                 <div className="p-4 max-h-[500px] overflow-y-auto">
                   {cartItems.length === 0 ? (
                     <p>Your cart is empty.</p>
@@ -125,6 +125,62 @@ const Navbar = () => {
                       <div className="flex justify-between mt-4">
                         <button onClick={handleCheckout} className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition">Checkout</button>
                         <button onClick={handleClearCart} className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition">Clear Cart</button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Cart - Mobile Fullscreen Drawer */}
+            {cartOpen && (
+              <div className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end">
+                <div className="w-full h-full bg-white p-4 overflow-y-auto relative">
+                  {/* Close Button */}
+                  <button
+                    onClick={toggleCart}
+                    className="absolute top-4 right-4 text-gray-700 text-2xl"
+                  >
+                    ✕
+                  </button>
+
+                  <h2 className="text-xl font-bold mb-4">Your Cart</h2>
+
+                  {cartItems.length === 0 ? (
+                    <p>Your cart is empty.</p>
+                  ) : (
+                    <>
+                      <ul>
+                        {cartItems.map(item => {
+                          const product = Products.find(p => p.id === item.productId);
+                          if (!product) return null;
+                          return (
+                            <li key={item.productId} className="flex items-center mb-4 border-b pb-2">
+                              <img src={product.image} alt={product.name} className="w-16 h-16 object-cover rounded-md mr-4" />
+                              <div className="flex-grow">
+                                <p className="font-semibold">{product.name}</p>
+                                <div className="flex items-center mt-1">
+                                  <button onClick={() => handleDecrease(item.productId)} className="px-3 py-1 bg-gray-300 rounded">-</button>
+                                  <p className="text-sm text-gray-500 px-3">Qty: {item.quantity}</p>
+                                  <button onClick={() => handleIncrease(item.productId)} className="px-3 py-1 bg-gray-300 rounded">+</button>
+                                </div>
+                              </div>
+                            </li>
+                          );
+                        })}
+                      </ul>
+
+                      <p className="font-semibold mt-4 text-right">
+                        Total: Rs.{" "}
+                        {cartItems.reduce((total, item) => {
+                          const product = Products.find(p => p.id === item.productId);
+                          return product ? total + product.price * item.quantity : total;
+                        }, 0)}
+                      </p>
+
+                      <div className="flex justify-between mt-6">
+                        <button onClick={handleCheckout} className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Checkout</button>
+                        <button onClick={handleClearCart} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Clear</button>
                       </div>
                     </>
                   )}
