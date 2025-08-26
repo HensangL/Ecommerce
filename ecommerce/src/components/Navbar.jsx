@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Products } from './Products';
 import { clearCart, increaseQuantity, decreaseQuantity } from '../store/Cart';
+import { ShoppingCart } from 'lucide-react';
+
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -82,9 +84,10 @@ const Navbar = () => {
 
           {/* Cart Button */}
           <div className="relative">
-            <button onClick={toggleCart} className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
-              Cart ({cartItems.reduce((total, item) => total + item.quantity, 0)})
-            </button>
+            <button onClick={toggleCart} className="px-4 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 hover:cursor-pointer transition">
+  <ShoppingCart size={22} /> {cartItems.reduce((total, item) => total + item.quantity, 0)}
+</button>
+
 
             {/* Cart - Desktop Dropdown */}
             {cartOpen && (
