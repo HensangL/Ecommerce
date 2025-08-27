@@ -61,10 +61,10 @@ function Home() {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { title: "Women", img: "https://img.freepik.com/free-photo/fashion-portrait-young-elegant-woman_1328-2749.jpg" },
-            { title: "Men", img: "https://img.freepik.com/free-photo/young-handsome-man-posing_144627-22553.jpg" },
-            { title: "Accessories", img: "https://img.freepik.com/free-photo/still-life-fashion-photography_23-2149303796.jpg" },
-            { title: "Shoes", img: "https://img.freepik.com/free-photo/stylish-shoes-isolated_23-2147694244.jpg" },
+            { title: "Drink", img: "https://img.freepik.com/free-photo/fashion-portrait-young-elegant-woman_1328-2749.jpg" },
+            { title: "Fragrance", img: "https://img.freepik.com/free-photo/young-handsome-man-posing_144627-22553.jpg" },
+            { title: "Personal care", img: "https://img.freepik.com/free-photo/still-life-fashion-photography_23-2149303796.jpg" },
+            { title: "Cosmetics", img: "https://img.freepik.com/free-photo/stylish-shoes-isolated_23-2147694244.jpg" },
           ].map((cat, i) => (
             <div
               key={i}
