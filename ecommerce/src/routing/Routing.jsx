@@ -7,6 +7,7 @@ import About from '../pages/About'
 import Contact from '../pages/Contact'
 import ShoppingCart from '../components/ShoppingCart'
 import Products from '../pages/Products'
+import Sidebar from '../components/Sidebar'
 function Routing() {
   return (
     <div>
@@ -18,6 +19,7 @@ function Routing() {
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/cart" element={<ShoppingCart/>}/>
             <Route path="/products" element={<Products/>}/>
+            <Route path="/sidebar" element={<Sidebar/>}/>
 
         </Routes>
     </div>

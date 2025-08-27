@@ -1,9 +1,10 @@
 import React from 'react'
 import Shop from './Shop'
-
+import Sidebar from '../components/Sidebar'
 function Products() {
   return (
-    <div>
+    <div className='flex'>
+        <Sidebar/>
         <Shop/>
     </div>
   )
