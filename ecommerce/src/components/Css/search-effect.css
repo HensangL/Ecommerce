@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+
+.search-container {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.search-container input {
+  font-family: 'Inconsolata', monospace;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background: #2563eb; /* blue */
+  color: white;
+  padding: 0 50px 0 20px;
+  opacity: 0;
+  z-index: 5;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.search-container input:focus {
+  width: 250px;
+  border-radius: 8px;
+  opacity: 1;
+  cursor: text;
+}
+
+.search-container .search-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #2563eb;
+  z-index: 6;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container .search-btn::before {
+  content: "";
+  width: 12px;
+  height: 2px;
+  background: white;
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+  position: absolute;
+}
+
+.search-container .search-btn::after {
+  content: "";
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: all 0.5s ease;
+  position: absolute;
+}
+
+.search-container input:focus ~ .search-btn {
+  left: 210px; /* moves the magnifying glass away */
+  background: #151515;
+}
+
+.search-container input::placeholder {
+  color: white;
+  opacity: 0.5;
+  font-weight: 700;
+}

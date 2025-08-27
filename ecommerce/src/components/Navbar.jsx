@@ -4,7 +4,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Products } from './Products';
 import { clearCart, increaseQuantity, decreaseQuantity } from '../store/Cart';
 import { ShoppingCart } from 'lucide-react';
+import '../components/Css/Navbar.css';
+import '../components/Css/fill-effect.css';
 
+// AnimatedLink Component for letter-by-letter effect
+const AnimatedLink = ({ to, children }) => {
+  return (
+    <Link to={to} className="animated-link">
+      {[...children].map((letter, i) => (
+        <span key={i}>{letter}</span>
+      ))}
+    </Link>
+  );
+};
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -47,14 +59,14 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
-          <div className="text-xl font-bold text-blue-600">MyStore</div>
+          <div className="text-xl font-bold text-blue-600 mr-4">MyStore</div>
 
           {/* Desktop Links */}
           <div className="hidden md:flex space-x-6">
-            <Link to="/" className="text-blue-600 hover:bg-yellow-400 hover:rounded-2xl p-2">Home</Link>
-            <Link to="/products" className="text-blue-600 hover:bg-yellow-400 hover:rounded-2xl p-2">Shop</Link>
-            <Link to="/about" className="text-blue-600 hover:bg-yellow-400 hover:rounded-2xl p-2">About</Link>
-            <Link to="/contact" className="text-blue-600 hover:bg-yellow-400 hover:rounded-2xl p-2">Contact</Link>
+            <AnimatedLink to="/">Home</AnimatedLink>
+            <AnimatedLink to="/products">Shop</AnimatedLink>
+            <AnimatedLink to="/about">About</AnimatedLink>
+            <AnimatedLink to="/contact">Contact</AnimatedLink>
           </div>
 
           {/* Search Bar - Desktop */}
@@ -67,7 +79,7 @@ const Navbar = () => {
               className="border p-2 rounded w-full"
             />
             {searchResults.length > 0 && (
-              <div className="absolute mt-1 w-full bg-white rounded-md shadow-lg z-50">
+              <div className="absolute mt-10 ml-5 w-full bg-white rounded-md shadow-lg z-50">
                 <ul>
                   {searchResults.map(product => (
                     <li key={product.id} className="p-2 hover:bg-gray-100 cursor-pointer" onClick={handleResultClick}>
@@ -84,24 +96,10 @@ const Navbar = () => {
 
           {/* Cart Button */}
           <div className="relative">
-            {/* Cart Button */}
-<div className="relative">
-  <Link
-    to="/cart"
-    className="flex items-center gap-2 px-4 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
-  >
-    <ShoppingCart size={22} />
-    {cartItems.reduce((total, item) => total + item.quantity, 0)}
-  </Link>
-</div>
-
-
-
-            
-           
-
-            {/* Cart - Mobile Fullscreen Drawer */}
-            
+            <Link to="/cart" className="fill-button">
+              <ShoppingCart size={22} />
+              {cartItems.reduce((total, item) => total + item.quantity, 0)}
+            </Link>
           </div>
 
           {/* Mobile Hamburger */}
@@ -118,17 +116,49 @@ const Navbar = () => {
               )}
             </button>
           </div>
-
         </div>
+      </div>
+
+      {/* Mobile Search Bar */}
+      <div className={`md:hidden relative mt-2 px-4`}>
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={handleSearch}
+          className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        {searchResults.length > 0 && (
+          <div className="absolute mt-1 w-full bg-white rounded-md shadow-lg z-50">
+            <ul>
+              {searchResults.map(product => (
+                <li
+                  key={product.id}
+                  className="p-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={handleResultClick}
+                >
+                  <Link to={`/${product.slug}`} className="flex items-center">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-8 h-8 object-cover rounded-md mr-2"
+                    />
+                    {product.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <Link to="/" className="block px-4 py-2 text-blue-600 hover:bg-gray-100">Home</Link>
-          <Link to="/shop" className="block px-4 py-2 text-blue-600 hover:bg-gray-100">Shop</Link>
-          <Link to="/about" className="block px-4 py-2 text-blue-600 hover:bg-gray-100">About</Link>
-          <Link to="/contact" className="block px-4 py-2 text-blue-600 hover:bg-gray-100">Contact</Link>
+        <div className="md:hidden bg-white shadow-lg flex flex-col">
+          <AnimatedLink to="/">Home</AnimatedLink>
+          <AnimatedLink to="/products">Shop</AnimatedLink>
+          <AnimatedLink to="/about">About</AnimatedLink>
+          <AnimatedLink to="/contact">Contact</AnimatedLink>
         </div>
       )}
     </nav>
