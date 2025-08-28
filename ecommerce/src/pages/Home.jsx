@@ -45,14 +45,16 @@ function Home() {
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <Link to="/shop">
+              <Link to="/products">
                 <button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold rounded-full shadow-lg hover:scale-105 transform transition duration-300">
                   Shop Now →
                 </button>
               </Link>
-              <button className="px-6 py-3 border border-pink-500 text-pink-600 font-semibold rounded-full hover:bg-pink-100 transition duration-300">
+              <a href="#cate">
+              <button  className="px-6 py-3 border border-pink-500 text-pink-600 font-semibold rounded-full hover:bg-pink-100 transition duration-300">
                 View Categories
               </button>
+              </a>
             </div>
           </div>
 
@@ -76,7 +78,7 @@ function Home() {
       </section>
 
       {/* Categories Section */}
-      <section className="py-16 px-6 lg:px-20 bg-white">
+      <section id="cate" className="py-16 px-6 lg:px-20 bg-white">
         <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">
           Shop by Category
         </h2>
@@ -111,9 +113,11 @@ function Home() {
           <h2 className="text-3xl font-bold text-gray-900">
             Featured Products
           </h2>
+          <Link to="/products">
           <button className="text-pink-600 font-medium hover:underline">
             View All →
           </button>
+          </Link>
         </div>
                 <Shop products={Products} />
 

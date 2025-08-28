@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, ChevronDown } from 'lucide-react';
+import '../components/Css/About.css';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -55,63 +56,66 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-gray-800">
       {/* Hero Section */}
-      <section className="py-20 text-center bg-white shadow-sm">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Get in Touch</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-        </p>
-      </section>
+     <section className="py-20 text-center bg-white shadow-sm">
+  <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2 animate-slideInLeft">
+    Get in Touch
+  </h1>
+  <p className="text-lg text-gray-600 max-w-2xl mx-auto animate-slideInRight">
+    We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+  </p>
+</section>
 
       {/* Contact Info Cards Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Visit Store Card */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300">
-            <div className="p-4 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-500 mb-4 text-white shadow-md">
-              <MapPin size={28} />
-            </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Visit Our Store</h3>
-            <p className="text-gray-500">Bhaktapur Durbar Square Area</p>
-            <p className="text-gray-500">Bhaktapur, Nepal</p>
-          </div>
+  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {/* Visit Store Card */}
+    <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300 animate-slideInUp" style={{ animationDelay: '0s' }}>
+      <div className="p-4 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-500 mb-4 text-white shadow-md">
+        <MapPin size={28} />
+      </div>
+      <h3 className="text-xl font-semibold mb-2 text-gray-900">Visit Our Store</h3>
+      <p className="text-gray-500">Bhaktapur Durbar Square Area</p>
+      <p className="text-gray-500">Bhaktapur, Nepal</p>
+    </div>
 
-          {/* Call Us Card */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300">
-            <div className="p-4 rounded-full bg-gradient-to-tr from-rose-500 to-red-500 mb-4 text-white shadow-md">
-              <Phone size={28} />
-            </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Call Us</h3>
-            <p className="text-gray-500">+977-1-6610000</p>
-            <p className="text-gray-500">+977-9800000000</p>
-          </div>
+    {/* Call Us Card */}
+    <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300 animate-slideInUp" style={{ animationDelay: '0.2s' }}>
+      <div className="p-4 rounded-full bg-gradient-to-tr from-rose-500 to-red-500 mb-4 text-white shadow-md">
+        <Phone size={28} />
+      </div>
+      <h3 className="text-xl font-semibold mb-2 text-gray-900">Call Us</h3>
+      <p className="text-gray-500">+977-1-6610000</p>
+      <p className="text-gray-500">+977-9800000000</p>
+    </div>
 
-          {/* Email Us Card */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300">
-            <div className="p-4 rounded-full bg-gradient-to-tr from-sky-500 to-blue-500 mb-4 text-white shadow-md">
-              <Mail size={28} />
-            </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Email Us</h3>
-            <p className="text-gray-500">hello@martwear.com.np</p>
-            <p className="text-gray-500">support@martwear.com.np</p>
-          </div>
+    {/* Email Us Card */}
+    <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300 animate-slideInUp" style={{ animationDelay: '0.4s' }}>
+      <div className="p-4 rounded-full bg-gradient-to-tr from-sky-500 to-blue-500 mb-4 text-white shadow-md">
+        <Mail size={28} />
+      </div>
+      <h3 className="text-xl font-semibold mb-2 text-gray-900">Email Us</h3>
+      <p className="text-gray-500">hello@martwear.com.np</p>
+      <p className="text-gray-500">support@martwear.com.np</p>
+    </div>
 
-          {/* Business Hours Card */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300">
-            <div className="p-4 rounded-full bg-gradient-to-tr from-emerald-500 to-green-500 mb-4 text-white shadow-md">
-              <Clock size={28} />
-            </div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Business Hours</h3>
-            <p className="text-gray-500">Mon - Sat: 10:00 AM - 6:00 PM</p>
-            <p className="text-gray-500">Sun: 11:00 AM - 5:00 PM</p>
-          </div>
-        </div>
-      </section>
+    {/* Business Hours Card */}
+    <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300 animate-slideInUp" style={{ animationDelay: '0.6s' }}>
+      <div className="p-4 rounded-full bg-gradient-to-tr from-emerald-500 to-green-500 mb-4 text-white shadow-md">
+        <Clock size={28} />
+      </div>
+      <h3 className="text-xl font-semibold mb-2 text-gray-900">Business Hours</h3>
+      <p className="text-gray-500">Mon - Sat: 10:00 AM - 6:00 PM</p>
+      <p className="text-gray-500">Sun: 11:00 AM - 5:00 PM</p>
+    </div>
+  </div>
+</section>
+
 
       {/* Main Contact Form & Info Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8">
           {/* Left Column: Form */}
-          <div className="lg:w-1/2 p-8 bg-white rounded-2xl shadow-lg">
+          <div className="lg:w-1/2 p-8 bg-white rounded-2xl shadow-lg animate-slideInLeft">
             <h2 className="text-2xl font-bold mb-6 text-gray-900">Send us a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -224,7 +228,7 @@ const Contact = () => {
           </div>
 
           {/* Right Column: Location & FAQ */}
-          <div className="lg:w-1/2 space-y-8">
+          <div className="lg:w-1/2 space-y-8 animate-slideInRight">
             {/* Find Us Here Card */}
             <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center text-center">
               <div className="p-4 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-500 mb-4 text-white shadow-md">

@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Routing from './routing/Routing';
+import Footer from './pages/Footer';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
     <div >
       <Navbar />
       <Routing/>
+      <Footer />
       
     </div>
     </>
