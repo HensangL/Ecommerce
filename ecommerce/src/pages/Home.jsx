@@ -1,10 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Shop from "../pages/Shop";
 import { Products } from "../components/Products";
 
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (categoryTitle) => {
+    // Convert category title to match the filter format
+    const categoryMap = {
+      "Drink": "drinks",
+      "Fragrance": "fragrance", 
+      "Personal care": "personal-care",
+      "Cosmetics": "cosmetics"
+    };
+    
+    const filterCategory = categoryMap[categoryTitle];
+    
+    // Navigate to products page with category filter
+    navigate('/products', { 
+      state: { 
+        selectedCategory: filterCategory 
+      } 
+    });
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -69,6 +90,7 @@ function Home() {
             <div
               key={i}
               className="relative overflow-hidden rounded-2xl shadow-md group cursor-pointer"
+              onClick={() => handleCategoryClick(cat.title)}
             >
               <img
                 src={cat.img}

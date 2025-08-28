@@ -47,7 +47,7 @@ function FilterSidebar({
 
       {/* Sidebar Content */}
       <aside
-        className={`fixed top-16 left-2 h-[calc(100%-4rem)] w-72 bg-white border border-gray-200 shadow-lg transform transition-transform duration-300 ease-in-out z-50 
+        className={`fixed top-16 left-2 h-[calc(100%-4rem)] w-72 bg-white border border-gray-200 shadow-lg transform transition-transform duration-300 ease-in-out z-40 
         ${isOpen ? "translate-x-0" : "-translate-x-[110%]"} 
          md:translate-x-0 md:w-64 lg:w-72 md:p-6 lg:p-8 md:h-auto md:sticky md:top-20 md:block rounded-2xl`}
       >
