@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { SlidersHorizontal } from "lucide-react"; // nice filter icon
+import "../components/Css/fill-effect.css"; // import your CSS here ✅
+
 
 function FilterSidebar({
   selectedCategories,
@@ -32,22 +35,37 @@ function FilterSidebar({
 
   return (
     <>
-      {/* Mobile Toggle Button */}
+      {/* Mobile Small Button */}
       <button
-        className="w-full md:hidden py-3 px-6 bg-pink-600 text-white font-semibold rounded-lg shadow-md hover:bg-pink-700 transition-colors duration-200 mb-4"
-        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden fixed top-28 left-4 z-50 p-3 bg-white border border-gray-300 rounded-full shadow-lg hover:bg-gray-100 transition"
+        onClick={() => setIsOpen(true)}
         aria-expanded={isOpen}
       >
-        {isOpen ? "Hide Filters" : "Show Filters"}
+        <span className="fill-button"><SlidersHorizontal className=" w-5 h-5 text-gray-700" /></span>
+        
       </button>
 
       {/* Sidebar Content */}
       <aside
-        className={`${
-          isOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 lg:w-72 p-4 md:p-6 lg:p-8 bg-white border border-gray-200 rounded-2xl shadow-lg transition-transform duration-300 ease-in-out md:h-auto md:sticky md:top-8`}
+        className={`fixed top-16 left-2 h-[calc(100%-4rem)] w-72 bg-white border border-gray-200 shadow-lg transform transition-transform duration-300 ease-in-out z-50 
+        ${isOpen ? "translate-x-0" : "-translate-x-[110%]"} 
+         md:translate-x-0 md:w-64 lg:w-72 md:p-6 lg:p-8 md:h-auto md:sticky md:top-20 md:block rounded-2xl`}
       >
-        <h2 className="text-xl md:text-2xl font-extrabold mb-6 md:mb-8 text-gray-800">Filters</h2>
+        {/* Close button for mobile */}
+        <div className="flex justify-between items-center md:hidden p-4 border-b">
+          <h2 className="text-xl font-extrabold text-gray-800">Filters</h2>
+          <button
+            className="text-gray-600 hover:text-gray-800 font-bold text-lg"
+            onClick={() => setIsOpen(false)}
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Desktop heading */}
+        <h2 className="hidden md:block text-xl md:text-2xl font-extrabold mb-6 md:mb-8 text-gray-800">
+          Filters
+        </h2>
 
         {/* Category Filter */}
         <div className="mb-6 md:mb-8 border-b border-gray-200 pb-4 md:pb-6">

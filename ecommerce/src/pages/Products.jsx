@@ -9,8 +9,8 @@ function Products() {
   const [onSaleOnly, setOnSaleOnly] = useState(false);
 
   return (
-    <div className='flex'>
-      <Sidebar
+    <div className='flex mt-16'>
+      <Sidebar 
         selectedCategories={selectedCategories}
         setSelectedCategories={setSelectedCategories}
         selectedPrice={selectedPrice}

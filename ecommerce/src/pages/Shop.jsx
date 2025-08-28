@@ -21,7 +21,7 @@ function Shop({ products = [], selectedCategories = [], selectedPrice = '', onSa
   });
 
   return (
-    <div className="px-4 sm:px-6 lg:px-10 py-10 mt-20 min-h-screen bg-gray-100 flex-1">
+<div className=" px-4 sm:px-6 lg:px-10 pt-24 min-h-screen bg-gray-100 flex-1">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {filteredProducts.length > 0 ? (
           filteredProducts.map(product => (
